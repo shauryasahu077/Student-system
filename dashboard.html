@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - SMS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        .navbar {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            background-color: #ef4444;
+            color: #ffffff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-logout:hover {
+            background-color: #dc2626;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .welcome-card h2 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .welcome-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .badge {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h1>🎓 Student Portal</h1>
+        <a href="/logout" class="btn-logout">Logout</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="welcome-card">
+            <h2>Welcome, {{ student["name"] }}! 👋</h2>
+            <p>Here is your academic progress overview</p>
+        </div>
+
+        <div class="info-card">
+
+            <div class="info-row">
+                <span class="info-label">Enrollment Number</span>
+                <span class="info-value badge">{{ student["enrollment_no"] }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Full Name</span>
+                <span class="info-value">{{ student["name"] }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Course</span>
+                <span class="info-value">{{ student["course"] }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Semester</span>
+                <span class="info-value">{{ student["semester"] }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Attendance</span>
+                <span class="info-value" style="color: #16a34a;">{{ student["attendance"] }}%</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Total Marks</span>
+                <span class="info-value" style="color: #2563eb;">{{ student["marks"] }}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

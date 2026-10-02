@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students - SMS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        .navbar {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            background-color: #ef4444;
+            color: #ffffff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        .menu-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: #ffffff;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .menu-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+
+        .search-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #2563eb;
+        }
+
+        .btn-search {
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-clear {
+            background: #e2e8f0;
+            color: #334155;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .table-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            padding: 14px 16px;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            white-space: nowrap;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-enrollment {
+            background: #f1f5f9;
+            color: #0f172a;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit {
+            background: #2563eb;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h1>⚙️ Admin Portal</h1>
+        <a href="/admin_logout" class="btn-logout">Logout</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="menu-bar">
+            <a href="/students" class="menu-btn active">📋 View Students</a>
+            <a href="/add_student" class="menu-btn">➕ Add Student</a>
+        </div>
+
+        <div class="search-card">
+            <form method="GET" action="/students" class="search-form">
+                <input
+                    class="search-input"
+                    type="text"
+                    name="search"
+                    placeholder="Search by Enrollment or Name..."
+                    value="{{ search }}"
+                >
+                <button class="btn-search" type="submit">Search</button>
+                <a class="btn-clear" href="/students">Clear</a>
+            </form>
+        </div>
+
+        <div class="table-card">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Enrollment</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Sem</th>
+                            <th>Attendance</th>
+                            <th>Marks</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td><span class="badge-enrollment">{{ student["enrollment_no"] }}</span></td>
+                            <td><strong>{{ student["name"] }}</strong></td>
+                            <td>{{ student["course"] }}</td>
+                            <td>{{ student["semester"] }}</td>
+                            <td><span style="color: #16a34a; font-weight: 600;">{{ student["attendance"] }}%</span></td>
+                            <td><span style="color: #2563eb; font-weight: 600;">{{ student["marks"] }}</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <a class="btn-edit" href="/edit/{{ student['enrollment_no'] }}">Edit</a>
+                                    <a class="btn-delete" href="/delete/{{ student['enrollment_no'] }}" onclick="return confirm('Delete this record?');">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #64748b; padding: 24px;">No student records found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
