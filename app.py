@@ -269,6 +269,10 @@ def delete_student(enrollment_no):
 
     return redirect(url_for("students"))
 
+@app.route('/download-db')
+def download_db():
+    return send_file('student.db', as_attachment=True)
+
 
 # ---------------- START SERVER ----------------
 
