@@ -5,10 +5,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, "student.db")
 
-app = Flask(
-    __name__,
-    template_folder=os.path.join(BASE_DIR, "templates")
-)
+app = Flask(__name__, template_folder='.')
+
 
 # Session ke liye secret key
 app.secret_key = "student_management_secret_key"
